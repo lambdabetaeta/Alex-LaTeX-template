@@ -1,0 +1,124 @@
+% KOMA options
+\setkomafont{title}{\normalfont\small}
+
+% Various nice packages 
+
+\usepackage{mlmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[svgnames]{xcolor}
+\usepackage[pdfusetitle,hyperfootnotes=false]{hyperref}
+\RequirePackage[
+  backend=biber,
+  doi=true,
+  citestyle=alphabetic,
+  backref=true,
+  sortcites=true,
+  style=alphabetic,
+  maxnames=1000,
+  mincrossrefs=99,
+  sorting=nyt,
+  sortcites
+]{biblatex}
+\usepackage{wasysym}
+\usepackage{stmaryrd}
+\usepackage{fontawesome}
+\usepackage{mleftright}
+\usepackage{xparse}
+\usepackage{ifthen}
+\usepackage{scalerel}
+\usepackage{epigraph}
+\usepackage{datetime}
+\usepackage{mathpartir}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{etoolbox}
+\usepackage{thmtools}
+\usepackage{jmsdelim}
+\usepackage[capitalize,nameinlink]{cleveref}
+
+% Colours
+
+\definecolor{Matterhorn}{RGB}{77,77,77}
+\definecolor{RegalBlue}{RGB}{3,69,117}
+\definecolor{RedDevil}{RGB}{134,1,17}
+\hypersetup{breaklinks=true,colorlinks=true,linkcolor=RedDevil,urlcolor=RegalBlue, citecolor=RedDevil}
+
+\crefname{chapter}{\S\!\!}{\S\!\!}
+\crefname{diagram}{Diagram}{Diagrams}
+
+\NewDocumentCommand\Mute{m}{%
+  {\color{gray} #1}%
+}
+\NewDocumentCommand\GrmSep{}{\Mute{\;\mid\;}}
+
+
+\newcommand\GrmContinue{\multicolumn{2}{l}{}} % for weird reasons this must be \newcommand
+
+\NewDocumentEnvironment{grammar}{}{%
+  \par\vspace{.5\baselineskip}
+  \begin{tabular}{>{\itshape(}l<{)} >{$}l<{$} @{\quad $\Coloneqq$\quad } >{$}l<{$}}%
+}{%
+  \end{tabular}%
+  \par\vspace{.5\baselineskip}
+}
+
+\makeatletter
+\def\rightharpoonupfill@{\arrowfill@\relbar\relbar\rightharpoonup}
+\newcommand{\overrightharpoonup}{\mathpalette{\overarrow@\rightharpoonupfill@}}
+\makeatother
+
+\NewDocumentCommand\JdgFrame{m}{%
+  \fbox{$\displaystyle #1$}
+}
+
+\NewDocumentCommand{\Pow}{m}{\mathcal{P}\parens{#1}}
+
+\declaretheorem[numberwithin=section]{theorem}
+\declaretheorem[sibling=theorem]{lemma}
+\declaretheorem[sibling=theorem]{conjecture}
+\declaretheorem[sibling=theorem]{proposition}
+\declaretheorem[sibling=theorem]{corollary}
+
+\declaretheorem[style=definition,sibling=theorem]{definition}
+\declaretheorem[style=definition,sibling=theorem]{construction}
+
+\declaretheorem[style=remark]{example}
+\declaretheorem[style=remark,sibling=example]{assumption}
+\declaretheorem[style=remark,sibling=example]{notation}
+\declaretheorem[style=remark,sibling=example]{convention}
+\declaretheorem[style=remark,sibling=example]{remark}
+
+\NewDocumentCommand{\etc}{}{etc.}
+\NewDocumentCommand{\eg}{}{e.g.}
+\NewDocumentCommand{\ie}{}{i.e.}
+\NewDocumentCommand{\viz}{}{viz.}
+
+\NewDocumentCommand{\Alert}{m}{{\color{Red} #1}}
+
+%% Defines a wider version of bar that isn't as large as overline.  The code is stolen from
+%% https://tex.stackexchange.com/questions/16337/can-i-get-a-widebar-without-using-the-mathabx-package/60253#60253
+\makeatletter
+\newcommand*\rel@kern[1]{\kern#1\dimexpr\macc@kerna}
+\newcommand*\widebar[1]{%
+  \begingroup
+  \def\mathaccent##1##2{%
+    \rel@kern{0.8}%
+    \overline{\rel@kern{-0.8}\macc@nucleus\rel@kern{0.2}}%
+    \rel@kern{-0.2}%
+  }%
+  \macc@depth\@ne
+  \let\math@bgroup\@empty \let\math@egroup\macc@set@skewchar
+  \mathsurround\z@ \frozen@everymath{\mathgroup\macc@group\relax}%
+  \macc@set@skewchar\relax
+  \let\mathaccentV\macc@nested@a
+  \macc@nested@a\relax111{#1}%
+  \endgroup
+}
+\makeatother
+
+%% From https://tex.stackexchange.com/questions/42726/align-but-show-one-equation-number-at-the-end
+\NewDocumentCommand{\TagEq}{o}{\IfValueTF{#1}{\tag{#1}}{\stepcounter{equation}\tag{\theequation}}}
+
+\allowdisplaybreaks%

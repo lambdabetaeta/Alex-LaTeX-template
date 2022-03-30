@@ -1,0 +1,30 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage{breakcites}
+\usepackage{preamble}
+\usepackage{macros}
+\usepackage{lipsum}
+
+\addbibresource{refs.bib}
+
+\title{A new paper dawns}
+\author{G. A. Kavvos \and Alex Kavvotsky}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  \lipsum[1]
+\end{abstract}
+
+
+\section{First}
+  \lipsum[1]
+
+\section{Second}
+  \lipsum[2] \parencite{qian2021}
+
+\printbibliography
+
+\end{document}
