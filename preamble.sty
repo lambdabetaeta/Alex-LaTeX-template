@@ -68,16 +68,18 @@
 
 \newlist{indproof}{itemize}{5}
 \setlist[indproof]{%
-%%  topsep=30pt,  % space before start / after end of list
+  % topsep=30pt,  % space before start / after end of list
   itemsep=5pt,  % space between items
   leftmargin=5pt,
   listparindent=10pt,
   font={\scshape}, % set the label font
   label={}
 }
-\newcommand{\indcase}[1]{\item{{\color{RedDevil}{\scshape Case}}(#1)}.}
+\newcommand{\indcase}[1]{\item{{\scshape Case}(#1)}.}
 
 \newcommand\GrmContinue{\multicolumn{2}{l}{}} % for weird reasons this must be \newcommand
+
+%% Environment for grammars
 
 \NewDocumentEnvironment{grammar}{}{%
   \par\vspace{.5\baselineskip}
@@ -95,8 +97,6 @@
 \NewDocumentCommand\JdgFrame{m}{%
   \fbox{$\displaystyle #1$}
 }
-
-\NewDocumentCommand{\Pow}{m}{\mathcal{P}\parens{#1}}
 
 %% AMS Theorem options
 
