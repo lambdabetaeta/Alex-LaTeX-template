@@ -1,9 +1,16 @@
-% KOMA options
-\setkomafont{title}{\normalfont\small}
+%% KOMA options
+\KOMAoptions{numbers=endperiod}
+\setkomafont{disposition}{\bfseries}
+\setkomafont{title}{\normalfont\Huge}
+\setkomafont{section}{\centering\normalfont\scshape\Large}
 
-% Various nice packages 
-
+\usepackage[T1]{fontenc}
 \usepackage{mlmodern}
+% \usepackage[adobe-utopia]{mathdesign}
+\usepackage{microtype}
+
+%% Various nice packages 
+
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -31,6 +38,7 @@
 \usepackage{epigraph}
 \usepackage{datetime}
 \usepackage{mathpartir}
+\usepackage{enumitem}
 \usepackage{array}
 \usepackage{mathtools}
 \usepackage{etoolbox}
@@ -38,21 +46,36 @@
 \usepackage{jmsdelim}
 \usepackage[capitalize,nameinlink]{cleveref}
 
-% Colours
+%% Colours
 
 \definecolor{Matterhorn}{RGB}{77,77,77}
 \definecolor{RegalBlue}{RGB}{3,69,117}
 \definecolor{RedDevil}{RGB}{134,1,17}
 \hypersetup{breaklinks=true,colorlinks=true,linkcolor=RedDevil,urlcolor=RegalBlue, citecolor=RedDevil}
 
-\crefname{chapter}{\S\!\!}{\S\!\!}
-\crefname{diagram}{Diagram}{Diagrams}
-
 \NewDocumentCommand\Mute{m}{%
   {\color{gray} #1}%
 }
 \NewDocumentCommand\GrmSep{}{\Mute{\;\mid\;}}
 
+%% Cleverref options
+
+\crefname{chapter}{\S\!\!}{\S\!\!}
+\crefname{section}{\S\!\!}{\S\!\!}
+\crefname{diagram}{Diagram}{Diagrams}
+
+%% Enumitem: macros for inductive proofs
+
+\newlist{indproof}{itemize}{5}
+\setlist[indproof]{%
+%%  topsep=30pt,  % space before start / after end of list
+  itemsep=5pt,  % space between items
+  leftmargin=5pt,
+  listparindent=10pt,
+  font={\scshape}, % set the label font
+  label={}
+}
+\newcommand{\indcase}[1]{\item{{\color{RedDevil}{\scshape Case}}(#1)}.}
 
 \newcommand\GrmContinue{\multicolumn{2}{l}{}} % for weird reasons this must be \newcommand
 
@@ -75,6 +98,8 @@
 
 \NewDocumentCommand{\Pow}{m}{\mathcal{P}\parens{#1}}
 
+%% AMS Theorem options
+
 \declaretheorem[numberwithin=section]{theorem}
 \declaretheorem[sibling=theorem]{lemma}
 \declaretheorem[sibling=theorem]{conjecture}
@@ -89,11 +114,6 @@
 \declaretheorem[style=remark,sibling=example]{notation}
 \declaretheorem[style=remark,sibling=example]{convention}
 \declaretheorem[style=remark,sibling=example]{remark}
-
-\NewDocumentCommand{\etc}{}{etc.}
-\NewDocumentCommand{\eg}{}{e.g.}
-\NewDocumentCommand{\ie}{}{i.e.}
-\NewDocumentCommand{\viz}{}{viz.}
 
 \NewDocumentCommand{\Alert}{m}{{\color{Red} #1}}
 

@@ -7,28 +7,15 @@
 
 \NewDocumentEnvironment{sketch}{}{\paragraph{\normalcolor \emph{Sketch}} \color{red}}{\normalcolor}
 
-\newcommand{\defeq}{\triangleq}
+% \newcommand{\defeq}{\triangleq}
+\newcommand{\defeq}{\stackrel{\mathclap{\mbox{\tiny def}}}{=}}
 
-\newcommand{\MLTT}{\textup{\textsf{MLTT}}}
-\newcommand{\MTT}{\textup{\textsf{MTT}}}
-\newcommand{\AdjTT}{\textup{\textsf{AdjTT}}}
-\newcommand{\CoTT}{\textup{\textsf{CoTT}}}
-
-
+%% Type theory macros
 \NewDocumentCommand{\Sum}{m}{\textstyle \DelimMin{2}\sum_{\DelimProtect{#1}}}
 \NewDocumentCommand{\Prod}{m}{\textstyle \DelimMin{2}\prod_{\DelimProtect{#1}}}
 \NewDocumentCommand{\Coprod}{m}{\textstyle \DelimMin{2}\coprod_{\DelimProtect{#1}}}
 \NewDocumentCommand{\Pushout}{m}{\mathbin{\textstyle \DelimMin{2}\coprod_{\DelimProtect{#1}}}}
 \NewDocumentCommand{\In}{m}{\mathsf{in}_{#1}}
-
-\NewDocumentCommand{\Open}{}{\textnormal{\fullmoon}}
-\NewDocumentCommand{\Closed}{}{\textnormal{\newmoon}}
-\NewDocumentCommand{\Dep}{m}{\hat{#1}}
-
-\NewDocumentCommand{\ClIncl}{s}{\IfBooleanTF{#1}{\mathbf{i}^*}{\mathbf{i}_*}}
-\NewDocumentCommand{\OpenIncl}{s}{\IfBooleanTF{#1}{\mathbf{j}^*}{\mathbf{j}_*}}
-\NewDocumentCommand{\OpenInclShriek}{}{{\mathbf{j}^!}}
-
 \NewDocumentCommand{\Uni}{O{}}{\mathsf{U}_{#1}}
 \NewDocumentCommand{\Dec}{O{}g}{\mathsf{El}_{#1}\IfValueT{#2}{\prn{#2}}}
 

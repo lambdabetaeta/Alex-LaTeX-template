@@ -1,4 +1,4 @@
-\documentclass[a4paper]{scrartcl}
+\documentclass{scrartcl}
 \usepackage{breakcites}
 \usepackage{preamble}
 \usepackage{macros}
@@ -20,10 +20,26 @@
 
 
 \section{First}
-  \lipsum[1]
 
+\subsection{First one}
+  Here is some mathematics: \( \int \frac{1}{x} = \ln |x| + C \).
+  
+  Here is a display block of mathematics:
+  \[
+    \mathbf{Y} \defeq (\lambda x. xx)(\lambda x. xx)
+  \]
+
+  \lipsum[1] \parencite{qian2021}
+
+\subsection{Second one}
+  \lipsum[2]
+  
+  \paragraph{Another paragraph}
+  \lipsum[3]
+  
 \section{Second}
-  \lipsum[2] \parencite{qian2021}
+
+\lipsum[4]
 
 \printbibliography
 
