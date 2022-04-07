@@ -2,7 +2,9 @@
 \KOMAoptions{numbers=endperiod}
 \setkomafont{disposition}{\bfseries}
 \setkomafont{title}{\normalfont\Huge}
-\setkomafont{section}{\centering\normalfont\scshape\Large}
+\setkomafont{section}{\centering\normalfont\scshape\large}
+
+%% Font stuff
 
 \usepackage[T1]{fontenc}
 \usepackage{mlmodern}
@@ -80,7 +82,17 @@
 \newcommand\GrmContinue{\multicolumn{2}{l}{}} % for weird reasons this must be \newcommand
 
 %% Environment for grammars
-
+%% Writing
+%%
+%%   \begin{grammar}
+%%     Term & P & Q \mid R \mid S \mid T
+%%   \end{grammar}
+%%
+%% produces
+%%
+%%   (Term) P ::= Q | R | S | T
+%%
+  
 \NewDocumentEnvironment{grammar}{}{%
   \par\vspace{.5\baselineskip}
   \begin{tabular}{>{\itshape(}l<{)} >{$}l<{$} @{\quad $\Coloneqq$\quad } >{$}l<{$}}%
@@ -109,13 +121,11 @@
 \declaretheorem[style=definition,sibling=theorem]{definition}
 \declaretheorem[style=definition,sibling=theorem]{construction}
 
-\declaretheorem[style=remark]{example}
-\declaretheorem[style=remark,sibling=example]{assumption}
-\declaretheorem[style=remark,sibling=example]{notation}
-\declaretheorem[style=remark,sibling=example]{convention}
-\declaretheorem[style=remark,sibling=example]{remark}
-
-\NewDocumentCommand{\Alert}{m}{{\color{Red} #1}}
+\declaretheorem[]{example}
+\declaretheorem[sibling=example]{assumption}
+\declaretheorem[sibling=example]{notation}
+\declaretheorem[sibling=example]{convention}
+\declaretheorem[sibling=example]{remark}
 
 %% Defines a wider version of bar that isn't as large as overline.  The code is stolen from
 %% https://tex.stackexchange.com/questions/16337/can-i-get-a-widebar-without-using-the-mathabx-package/60253#60253
