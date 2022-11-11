@@ -124,20 +124,34 @@
 
 %% AMS Theorem options
 
-\declaretheorem[numberwithin=section]{theorem}
-\declaretheorem[sibling=theorem]{lemma}
-\declaretheorem[sibling=theorem]{conjecture}
-\declaretheorem[sibling=theorem]{proposition}
-\declaretheorem[sibling=theorem]{corollary}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{rul}[theorem]{Rule}
 
-\declaretheorem[style=definition,sibling=theorem]{definition}
-\declaretheorem[style=definition,sibling=theorem]{construction}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{construction}[theorem]{Construction}
 
-\declaretheorem[]{example}
-\declaretheorem[sibling=example]{assumption}
-\declaretheorem[sibling=example]{notation}
-\declaretheorem[sibling=example]{convention}
-\declaretheorem[sibling=example]{remark}
+%% With longer examples and remarks, it's nice to have an end clearly defined, particularly when
+%% there's a page break involved.
+\newtheorem{examplex}[theorem]{Example}
+\newenvironment{example}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\lhd$}\examplex}
+  {\popQED\endexamplex}
+\newtheorem{remarkx}[theorem]{Remark}
+\newenvironment{remark}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\lhd$}\remarkx}
+  {\popQED\endremarkx}
+
+\theoremstyle{remark}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{convention}[theorem]{Convention}
+
 
 %% Defines a wider version of bar that isn't as large as overline.  The code is stolen from
 %% https://tex.stackexchange.com/questions/16337/can-i-get-a-widebar-without-using-the-mathabx-package/60253#60253
