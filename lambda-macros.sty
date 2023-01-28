@@ -1,7 +1,7 @@
 %% Basic Lambda Calculus macros
-%% Alex Kavvos, 2021-2022
+%% Alex Kavvos, 2021-2023
 
-\ProvidesPackage{lambda-macros}[2022/03/31 lambda-macros]
+\ProvidesPackage{lambda-macros}[2023/01/28 lambda-macros]
 
 %% Load in your own work by putting in the same folder as your file and invoking
 %%
@@ -30,6 +30,7 @@
 \definecolor{MaizeCrayola}{RGB}{255, 204, 102}
 \definecolor{CommandPurple}{RGB}{135, 23, 77}
 \definecolor{RegalBlue}{RGB}{3,69,117}
+\definecolor{DefinitePurple}{RGB}{77,28,192}
 
 \NewDocumentCommand{\alert}{m}{{\color{red}{#1}}}
 
@@ -51,6 +52,9 @@
 \NewDocumentCommand{\Nil}{}{\textsf{nil}}
 \NewDocumentCommand{\Cons}{mm}{\textsf{cons}(#1, #2)}
 
+%% Contexts
+\NewDocumentCommand{\EmptyCtx}{}{\cdot}
+
 %% Simple expressions
 
 %% \IsTerm{M}{A}         produces Γ |- Μ : A
@@ -59,7 +63,7 @@
 
 \NewDocumentCommand{\NumT}{}{\textsf{Num}}
 \NewDocumentCommand{\StrT}{}{\textsf{Str}}
-\NewDocumentCommand{\Num}{m}{\textsf{num}[#1]}
+\NewDocumentCommand{\Num}{m}{\overline{#1}}
 \NewDocumentCommand{\Str}{m}{\textsf{str}[#1]}
 
 \NewDocumentCommand{\Plus}{mm}{\textsf{plus}(#1; #2)}
@@ -71,7 +75,8 @@
 \NewDocumentCommand{\Let}{mmm}{\textsf{let}\, #1 \Leftarrow #2\, \textsf{in}\, #3}
 
 \NewDocumentCommand{\Subst}{smmm}{
-  \IfBooleanTF{#1}{\parens{\Tm{#2}}}{\Tm{#2}}\Meta{[\Tm{#3}/\Tm{#4}]}
+  \DelimMin{2}
+  \IfBooleanTF{#1}{\DelimPrn{\Tm{#2}}}{\Tm{#2}}\Meta{\DelimBrk{\Tm{#3}/\Tm{#4}}}
 }
 
 %% Operational semantics
