@@ -7,8 +7,8 @@
 
 \NewDocumentEnvironment{sketch}{}{\paragraph{\normalcolor \emph{Sketch}} \color{red}}{\normalcolor}
 
-% \newcommand{\defeq}{\triangleq}
-\newcommand{\defeq}{\stackrel{\mathclap{\mbox{\tiny def}}}{=}}
+\NewDocumentCommand{\defeq}{}{\stackrel{\mathclap{\mbox{\tiny def}}}{=}}
+\NewDocumentCommand{\defequiv}{}{\stackrel{\mathclap{\mbox{\tiny def}}}{\equiv}}
 
 
 \NewDocumentCommand\Kwd{m}{{\normalfont\textbf{#1}}}

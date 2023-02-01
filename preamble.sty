@@ -66,7 +66,7 @@
 \definecolor{MaizeCrayola}{RGB}{255, 204, 102}
 \definecolor{Black}{RGB}{0, 0, 0}
 
-\hypersetup{breaklinks=true,colorlinks=true,linkcolor=RedDevil,urlcolor=RegalBlue, citecolor=RedDevil}
+\hypersetup{breaklinks=true,colorlinks=true,linkcolor=RedDevil,urlcolor=RedDevil, citecolor=RedDevil}
 
 \NewDocumentCommand\Mute{m}{%
   {\color{gray} #1}%
@@ -75,9 +75,28 @@
 
 %% Cleverref options
 
+\crefname{equation}{}{}
 \crefname{chapter}{\S\!\!}{\S\!\!}
 \crefname{section}{\S\!\!}{\S\!\!}
+% Create counter for diagrams
+\newcounter{diagram}
+% Create diagram environment
+\newenvironment{diagram}[1][]{%
+    \begin{equation}%
+    \begin{tikzpicture}[#1, baseline=(current  bounding  box.center)]%
+    \setcounter{diagram}{\theequation}
+    \addtocounter{diagram}{-1}
+    \refstepcounter{diagram}
+}{%
+    \end{tikzpicture}%
+    \end{equation}%
+}
 \crefname{diagram}{Diagram}{Diagrams}
+
+%% Make description and labelling environments nicer
+\setkomafont{descriptionlabel}{\normalfont\bfseries}
+\setkomafont{labelinglabel}{\normalfont\bfseries}
+\setkomafont{labelingseparator}{\normalfont}
 
 %% Enumitem: macros for inductive proofs
 
