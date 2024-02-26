@@ -1,25 +1,16 @@
-%% KOMA options
-\KOMAoptions{numbers=endperiod}
-\setkomafont{disposition}{\bfseries}
-\setkomafont{title}{\normalfont\Huge}
-\setkomafont{section}{\centering\normalfont\scshape\large}
+\usepackage{mleftright}
+\usepackage{ifthen}
+\usepackage{scalerel}
+\usepackage{epigraph}
+\usepackage{datetime}
+\usepackage{mathpartir}
+\usepackage{array}
+\usepackage{etoolbox}
+\usepackage{enumitem}
 
-%% Font stuff
+% Biber - can be replaced if BibTeX is mandated
 
-\usepackage[T1]{fontenc}
-\usepackage{mlmodern}
-\renewcommand{\bfdefault}{b}
-% \usepackage[adobe-utopia]{mathdesign}
-\usepackage{microtype}
-
-%% Various nice packages 
-
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage[svgnames]{xcolor}
-\usepackage[pdfusetitle,hyperfootnotes=false]{hyperref}
-\RequirePackage[
+\usepackage[
   backend=biber,
   doi=true,
   citestyle=alphabetic,
@@ -31,23 +22,6 @@
   sorting=nyt,
   sortcites
 ]{biblatex}
-\usepackage{wasysym}
-\usepackage{stmaryrd}
-\usepackage{fontawesome}
-\usepackage{mleftright}
-\usepackage{xparse}
-\usepackage{ifthen}
-\usepackage{scalerel}
-\usepackage{epigraph}
-\usepackage{datetime}
-\usepackage{mathpartir}
-\usepackage{enumitem}
-\usepackage{array}
-\usepackage{mathtools}
-\usepackage{etoolbox}
-\usepackage{thmtools}
-\usepackage{jmsdelim}
-\usepackage[capitalize,nameinlink]{cleveref}
 
 %% Colours
 
@@ -68,36 +42,6 @@
 
 \hypersetup{breaklinks=true,colorlinks=true,linkcolor=RedDevil,urlcolor=RedDevil, citecolor=RedDevil}
 
-\NewDocumentCommand\Mute{m}{%
-  {\color{gray} #1}%
-}
-\NewDocumentCommand\GrmSep{}{\Mute{\;\mid\;}}
-
-%% Cleverref options
-
-\crefname{equation}{}{}
-\crefname{chapter}{\S\!\!}{\S\!\!}
-\crefname{section}{\S\!\!}{\S\!\!}
-% Create counter for diagrams
-\newcounter{diagram}
-% Create diagram environment
-\newenvironment{diagram}[1][]{%
-    \begin{equation}%
-    \begin{tikzpicture}[#1, baseline=(current  bounding  box.center)]%
-    \setcounter{diagram}{\theequation}
-    \addtocounter{diagram}{-1}
-    \refstepcounter{diagram}
-}{%
-    \end{tikzpicture}%
-    \end{equation}%
-}
-\crefname{diagram}{Diagram}{Diagrams}
-
-%% Make description and labelling environments nicer
-\setkomafont{descriptionlabel}{\normalfont\bfseries}
-\setkomafont{labelinglabel}{\normalfont\bfseries}
-\setkomafont{labelingseparator}{\normalfont}
-
 %% Enumitem: macros for inductive proofs
 
 \newlist{indproof}{itemize}{5}
@@ -111,8 +55,6 @@
 }
 \newcommand{\indcase}[1]{\item{{\scshape Case}(#1)}.}
 
-\newcommand\GrmContinue{\multicolumn{2}{l}{}} % for weird reasons this must be \newcommand
-
 %% Environment for grammars
 %% Writing
 %%
@@ -124,6 +66,8 @@
 %%
 %%   (Term) P ::= Q | R | S | T
 %%
+
+\newcommand\GrmContinue{\multicolumn{2}{l}{}} % for weird reasons this must be \newcommand
   
 \NewDocumentEnvironment{grammar}{}{%
   \par\vspace{.5\baselineskip}
@@ -141,36 +85,6 @@
 \NewDocumentCommand\JdgFrame{m}{%
   \fbox{$\displaystyle #1$}
 }
-
-%% AMS Theorem options
-
-\theoremstyle{definition}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{rul}[theorem]{Rule}
-
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{notation}[theorem]{Notation}
-\newtheorem{construction}[theorem]{Construction}
-
-%% With longer examples and remarks, it's nice to have an end clearly defined, particularly when
-%% there's a page break involved.
-\newtheorem{examplex}[theorem]{Example}
-\newenvironment{example}
-  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\lhd$}\examplex}
-  {\popQED\endexamplex}
-\newtheorem{remarkx}[theorem]{Remark}
-\newenvironment{remark}
-  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\lhd$}\remarkx}
-  {\popQED\endremarkx}
-
-\theoremstyle{remark}
-\newtheorem{assumption}[theorem]{Assumption}
-\newtheorem{convention}[theorem]{Convention}
-
 
 %% Defines a wider version of bar that isn't as large as overline.  The code is stolen from
 %% https://tex.stackexchange.com/questions/16337/can-i-get-a-widebar-without-using-the-mathabx-package/60253#60253
@@ -192,8 +106,3 @@
   \endgroup
 }
 \makeatother
-
-%% From https://tex.stackexchange.com/questions/42726/align-but-show-one-equation-number-at-the-end
-\NewDocumentCommand{\TagEq}{o}{\IfValueTF{#1}{\tag{#1}}{\stepcounter{equation}\tag{\theequation}}}
-
-\allowdisplaybreaks%
